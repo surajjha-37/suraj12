@@ -7,8 +7,8 @@ let gameHeight = gameArea.offsetHeight;
 
 let birdY = 250; // Initial position of bird
 let birdSpeed = 0; // Bird's vertical speed
-let gravity = 0.5; // Gravity effect
-let lift = -10; // Speed at which bird rises when tap/click is pressed
+let gravity = 0.6; // Gravity effect (adjusted)
+let lift = -15; // Speed at which bird rises when tap/click is pressed (adjusted)
 let isGameOver = false;
 let obstacles = [];
 let score = 0;
@@ -23,7 +23,8 @@ startButton.addEventListener('click', function() {
 // Move the bird
 function moveBird() {
     birdY += birdSpeed;
-    birdSpeed += gravity;
+    birdSpeed += gravity; // Apply gravity to bird's speed
+
     if (birdY < 0) birdY = 0; // Don't let bird go above the game area
     if (birdY > gameHeight - 50) { // Game over if bird hits the ground
         birdY = gameHeight - 50;
@@ -32,7 +33,7 @@ function moveBird() {
     bird.style.top = birdY + 'px';
 }
 
-// Control the bird with spacebar or click/tap
+// Control the bird with click/tap
 function handleInput() {
     birdSpeed = lift; // Apply lift when click or touch is detected
 }
@@ -106,5 +107,4 @@ function gameLoop() {
 // Start the game
 function startGame() {
     setInterval(gameLoop, 20);
-    setInterval(generateObstacles, 2000); // Generate obstacles every 2 seconds
-}
+    setInterval(gen
